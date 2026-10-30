@@ -72,14 +72,157 @@ Read the input image in color mode.
 ##  Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** Sairam V
+### Register No: 212225230237
 
-### Register No:
-____________________________  
+```
+# Import 
 
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+# Read the image using OpenCV
+
+image = cv2.imread('baseball.jpg')
+image.shape
+plt.imshow(image[:,:,::-1])
+plt.title('Original Image')
+plt.show()
+tx, ty = 100, 200
+M_translation = np.float32([[1, 0, tx],[0, 1, ty]])
+translated_image = cv2.warpAffine(image, M_translation,(image.shape[1], image.shape[0]))
+plt.figure(figsize=(10,5))
+
+plt.subplot(1,2,1)
+plt.imshow(image[:,:,::-1])
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1,2,2)
+plt.imshow(translated_image[:,:,::-1])
+plt.title("Translated Image")
+plt.axis("off")
+
+plt.show()
+image = cv2.imread("baseball.jpg")
+downscaled_image = cv2.resize(image, None,fx=0.25,fy=0.25,interpolation=cv2.INTER_LINEAR)
+upscaled_image = cv2.resize(image, None,fx=3,fy=3,interpolation=cv2.INTER_LINEAR)
+plt.figure(figsize=(15,5))
+
+plt.subplot(1,3,1)
+plt.imshow(image[:,:,::-1])
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1,3,2)
+plt.imshow(downscaled_image[:,:,::-1])
+plt.title("Downscaled Image")
+plt.axis("off")
+
+plt.subplot(1,3,3)
+plt.imshow(upscaled_image[:,:,::-1])
+plt.title("Upscaled Image")
+plt.axis("off")
+
+plt.show()
+horizontal_matrix = np.float32([[1,0.5,0],[0,1,0]])
+horizontal_shear = cv2.warpAffine(image,horizontal_matrix,(image.shape[1], image.shape[0]))
+vertical_matrix = np.float32([[1,0,0],[0.5,1,0]])
+vertical_shear = cv2.warpAffine(image,vertical_matrix,(image.shape[1], image.shape[0]))
+
+plt.figure(figsize=(15,5))
+
+plt.subplot(1,3,1)
+plt.imshow(image[:,:,::-1])
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1,3,2)
+plt.imshow(horizontal_shear[:,:,::-1])
+plt.title("Horizontal Shear")
+plt.axis("off")
+
+plt.subplot(1,3,3)
+plt.imshow(vertical_shear[:,:,::-1])
+plt.title("Vertical Shear")
+plt.axis("off")
+
+plt.show()
+horizontal = cv2.flip(image,1)
+vertical = cv2.flip(image,0)
+both = cv2.flip(image,-1)
+plt.figure(figsize=(10,10))
+
+plt.subplot(2,2,1)
+plt.imshow(image[:,:,::-1])
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(2,2,2)
+plt.imshow(horizontal[:,:,::-1])
+plt.title("Horizontal Reflection")
+plt.axis("off")
+
+plt.subplot(2,2,3)
+plt.imshow(vertical[:,:,::-1])
+plt.title("Vertical Reflection")
+plt.axis("off")
+
+plt.subplot(2,2,4)
+plt.imshow(both[:,:,::-1])
+plt.title("Both Axes Reflection")
+plt.axis("off")
+
+plt.show()
+(height, width) = image.shape[:2]
+
+center = (width//2, height//2)
+matrix45 = cv2.getRotationMatrix2D(center,45,1)
+rotate45 = cv2.warpAffine(image,matrix45,(width,height))
+matrix90 = cv2.getRotationMatrix2D(center,90,1)
+rotate90 = cv2.warpAffine(image,matrix90,(width,height))
+plt.figure(figsize=(15,5))
+
+plt.subplot(1,3,1)
+plt.imshow(image[:,:,::-1])
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(1,3,2)
+plt.imshow(rotate45[:,:,::-1])
+plt.title("45 Degree Rotation")
+plt.axis("off")
+
+plt.subplot(1,3,3)
+plt.imshow(rotate90[:,:,::-1])
+plt.title("90 Degree Rotation")
+plt.axis("off")
+
+plt.show()
+```
 ---
 
 ##  Output
+
+<img width="690" height="426" alt="image" src="https://github.com/user-attachments/assets/dfa66b95-88c5-44a7-90d6-7dfa54d0cf1b" />
+
+<img width="702" height="235" alt="image" src="https://github.com/user-attachments/assets/870791d5-e58c-4337-b37a-58bca73a6779" />
+
+
+<img width="1443" height="318" alt="image" src="https://github.com/user-attachments/assets/6daaadc3-7ea2-406e-b3f5-63976a896363" />
+
+
+
+<img width="1488" height="295" alt="image" src="https://github.com/user-attachments/assets/bbde37cc-78c2-48a8-872a-c6f192d4658b" />
+
+
+<img width="1409" height="424" alt="image" src="https://github.com/user-attachments/assets/5b38c21d-6e77-498e-84dc-e94e0c0cd22e" />
+
+
+<img width="1446" height="525" alt="image" src="https://github.com/user-attachments/assets/fce087af-c175-4eb6-821b-2a8329be42a1" />
+
+
+<img width="1437" height="346" alt="image" src="https://github.com/user-attachments/assets/647f0a3d-8dee-48c2-acfe-864cfd15b779" />
 
 ### Image Translation
 - Original image is displayed  
